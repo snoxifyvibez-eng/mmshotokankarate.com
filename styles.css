@@ -167,7 +167,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.04; }
   transition: transform 0.35s var(--ease);
 }
 .topnav a:not(.nav-cta):hover::after { transform: scaleX(1); }
-.nav-cta {
+/* scoped to .topnav a.nav-cta (0,2,1) so its light color beats .topnav a (0,1,1) */
+.topnav a.nav-cta {
   background: var(--ink);
   color: var(--paper-3);
   padding: 0.5rem 1.1rem;
@@ -175,7 +176,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.04; }
   font-weight: 700;
   transition: background 0.3s var(--ease);
 }
-.nav-cta:hover { background: var(--vermilion); }
+.topnav a.nav-cta:hover { background: var(--vermilion); }
 
 /* ============================================================
    HERO
