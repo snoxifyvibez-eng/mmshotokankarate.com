@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Env & secrets — NEVER commit
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Build output
+dist/
+build/
+.cache/
