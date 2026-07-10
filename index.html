@@ -25,7 +25,8 @@
     <nav class="topnav" aria-label="Primary">
       <a href="#philosophy">Dojo</a>
       <a href="#schedule">Schedule</a>
-      <a href="#learn">Curriculum</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
       <a href="#register" class="nav-cta">Register</a>
     </nav>
   </header>
@@ -220,7 +221,17 @@
           <p class="register-lede fade">Complete the form below and we'll be in touch to welcome you to the dojo.</p>
         </div>
 
-        <form class="reg-form fade" novalidate>
+        <form
+          class="reg-form fade"
+          data-web3form
+          data-subject="New registration — MMS Shotokan"
+          data-from-name="MMS Shotokan Registration"
+          data-success="Thank you — your registration has been received. We'll be in touch soon. 押忍"
+          novalidate
+        >
+          <label class="hp" aria-hidden="true">
+            Leave this empty<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+          </label>
           <div class="field-grid">
             <label class="field">Student Name<input type="text" name="studentName" autocomplete="name" /></label>
             <label class="field">Date of Birth<input type="date" name="dob" /></label>
@@ -249,9 +260,9 @@
           </div>
 
           <button type="submit" class="btn btn-solid btn-block">Submit Registration</button>
-          <p class="form-note" role="status">
-            This form is a front-end sample and can be connected to email, Google Forms, or a database later.
-            Questions? <a href="mailto:mms.shotokan.karate@gmail.com">mms.shotokan.karate@gmail.com</a>
+          <p class="form-note">
+            We'll email you to confirm your spot. Questions?
+            <a href="mailto:mms.shotokan.karate@gmail.com">mms.shotokan.karate@gmail.com</a>
             · <a href="tel:+14165244007">416-524-4007</a>
           </p>
         </form>
@@ -313,19 +324,7 @@
       onScroll();
     })();
 
-    // Friendly front-end-only form handling.
-    (function () {
-      var form = document.querySelector('.reg-form');
-      if (!form) return;
-      form.addEventListener('submit', function (ev) {
-        ev.preventDefault();
-        var btn = form.querySelector('button[type="submit"]');
-        var name = (form.studentName.value || '').trim();
-        btn.textContent = name ? 'Received — thank you, ' + name.split(' ')[0] + ' 押忍' : 'Received — thank you 押忍';
-        btn.classList.add('is-done');
-        btn.disabled = true;
-      });
-    })();
   </script>
+  <script src="assets/forms.js" defer></script>
 </body>
 </html>

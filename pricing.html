@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing &amp; Payments — MMS Shotokan Karate</title>
+  <meta name="description" content="Register and pay for MMS Shotokan Karate classes in Oshawa. One-time registration fee and monthly membership. Secure payment by Stripe." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="subpage">
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar scrolled" id="top">
+    <a class="brand" href="index.html" aria-label="MMS Shotokan Karate — home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">
+        <span class="brand-name">MMS Shotokan</span>
+        <span class="brand-sub">松濤館 空手道 · Oshawa</span>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="index.html#philosophy">Dojo</a>
+      <a href="index.html#schedule">Schedule</a>
+      <a href="contact.html">Contact</a>
+      <a href="index.html#register" class="nav-cta">Register</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="page-hero">
+      <span class="kanji-watermark small" aria-hidden="true">月謝</span>
+      <p class="eyebrow">Membership &amp; fees</p>
+      <h1>Train with us</h1>
+      <p class="page-lede">
+        A one-time registration fee gets you started, then a simple monthly membership
+        keeps you on the mat. Payments are handled securely by Stripe — cards, Apple Pay
+        and Google Pay all work.
+      </p>
+    </section>
+
+    <section class="plans">
+      <!-- One-time registration -->
+      <article class="plan">
+        <div class="plan-top">
+          <span class="plan-kanji" aria-hidden="true">入</span>
+          <p class="card-eyebrow">Get started</p>
+          <h2>Registration</h2>
+          <p class="plan-price"><span class="cur">$</span><span class="amt" data-price="registration">—</span><span class="per">one-time</span></p>
+          <p class="plan-desc">A single registration fee for new students. Covers onboarding, your student record, and your first steps in the dojo.</p>
+        </div>
+        <ul class="plan-list">
+          <li>New-student registration</li>
+          <li>Welcome &amp; orientation</li>
+          <li>Guidance on gi (uniform)</li>
+        </ul>
+        <button class="btn btn-solid btn-block plan-buy" data-plan="registration" type="button">Pay Registration</button>
+      </article>
+
+      <!-- Monthly membership -->
+      <article class="plan plan-featured">
+        <span class="plan-flag">Most popular</span>
+        <div class="plan-top">
+          <span class="plan-kanji" aria-hidden="true">継</span>
+          <p class="card-eyebrow">Ongoing</p>
+          <h2>Monthly Membership</h2>
+          <p class="plan-price"><span class="cur">$</span><span class="amt" data-price="monthly">—</span><span class="per">/ month</span></p>
+          <p class="plan-desc">Unlimited access to all regular classes — Monday &amp; Friday. Cancel anytime through the customer portal.</p>
+        </div>
+        <ul class="plan-list">
+          <li>All Monday &amp; Friday classes</li>
+          <li>Kata, kumite &amp; conditioning</li>
+          <li>Cancel anytime, no contract</li>
+        </ul>
+        <button class="btn btn-solid btn-block plan-buy" data-plan="monthly" type="button">Start Membership</button>
+      </article>
+    </section>
+
+    <p class="plans-note" data-checkout-status role="status" aria-live="polite"></p>
+
+    <section class="plans-fineprint">
+      <p class="fine">
+        Secure checkout by <strong>Stripe</strong>. We never see or store your card details.
+        Questions about fees, family rates, or financial assistance?
+        <a href="contact.html">Contact the dojo</a> — everyone is welcome, and we'll work with you.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>MMS Shotokan Karate</span>
+    </div>
+    <p class="foot-line">St. Joseph Syro-Malabar Catholic Church · Oshawa, ON</p>
+    <p class="foot-line">Monday &amp; Friday · 6:00–7:30 PM</p>
+    <p class="foot-contact">
+      <a href="mailto:mms.shotokan.karate@gmail.com">mms.shotokan.karate@gmail.com</a>
+      <span aria-hidden="true">·</span>
+      <a href="tel:+14165244007">416-524-4007</a>
+    </p>
+    <p class="foot-osu" aria-hidden="true">押忍 · Osu</p>
+  </footer>
+
+  <script src="assets/checkout.js" defer></script>
+</body>
+</html>

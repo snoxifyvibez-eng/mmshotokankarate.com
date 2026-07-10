@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Received — MMS Shotokan Karate</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="subpage">
+  <div class="grain" aria-hidden="true"></div>
+  <main class="result-page">
+    <div class="hinomaru result-hinomaru" aria-hidden="true"></div>
+    <div class="result-inner">
+      <span class="result-kanji" aria-hidden="true">押忍</span>
+      <p class="eyebrow" id="s-eyebrow">Payment received</p>
+      <h1 id="s-title">Thank you — welcome to the dojo.</h1>
+      <p class="page-lede" id="s-lede">
+        Your payment was successful. We'll be in touch shortly with next steps.
+        We look forward to training with you.
+      </p>
+      <div class="hero-actions">
+        <a href="index.html" class="btn btn-solid">Back to Home</a>
+        <a href="contact.html" class="btn btn-ghost btn-ghost-dark">Contact the Dojo</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Confirm the payment server-side. We only DOWNGRADE the message when we
+    // positively learn the session wasn't paid — if verification is
+    // unavailable (no config / lookup failed), we leave the default thank-you.
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var sid = params.get('session_id');
+      if (!sid) return;
+      fetch('api/verify-session.php?session_id=' + encodeURIComponent(sid), { headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d.verified === false && (d.reason === 'invalid_session' || d.payment_status)) {
+            document.getElementById('s-eyebrow').textContent = 'Confirming payment';
+            document.getElementById('s-title').textContent = "We're confirming your payment.";
+            document.getElementById('s-lede').textContent =
+              "If you completed checkout, you'll hear from us shortly. If something looks off, please contact the dojo and we'll help.";
+          }
+        })
+        .catch(function () { /* leave default thank-you */ });
+    })();
+  </script>
+</body>
+</html>

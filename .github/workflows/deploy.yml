@@ -1,0 +1,53 @@
+name: Deploy to Hostinger
+
+# Manual deploy only — click "Run workflow" in the Actions tab.
+# This honors the rule that every deploy is an explicit, approved action.
+# (You can add an automatic `push:` trigger later if you want continuous deploys.)
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "deploy" to confirm publishing to production'
+        required: true
+        default: ''
+
+concurrency:
+  group: hostinger-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: FTP sync to public_html
+    runs-on: ubuntu-latest
+    steps:
+      - name: Guard — require explicit confirmation
+        if: ${{ github.event.inputs.confirm != 'deploy' }}
+        run: |
+          echo "::error::Deploy not confirmed. Re-run and type 'deploy' in the confirm box."
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          # Hostinger document root. If your files live under
+          # domains/<yourdomain>/public_html/, change this accordingly.
+          server-dir: public_html/
+          # Incremental sync. Never enable dangerous-clean-slate — it would
+          # delete server-only files such as api/config.php (your Stripe secret).
+          dangerous-clean-slate: false
+          # Do not upload repo/CI/docs, and NEVER the live secrets file.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            **/*.md
+            README.txt
+            api/config.php

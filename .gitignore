@@ -8,6 +8,9 @@ vendor/
 !.env.example
 *.local
 
+# Live payment config (holds Stripe secret key) — NEVER commit
+api/config.php
+
 # Logs
 *.log
 npm-debug.log*
