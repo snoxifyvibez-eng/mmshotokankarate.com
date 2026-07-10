@@ -1,0 +1,416 @@
+<title>Website Proposal — MMS Shotokan Karate</title>
+<style>
+  :root {
+    --ground:#f2f2ef; --surface:#ffffff; --surface-2:#faf9f7;
+    --ink:#17191d; --muted:#5b616a; --faint:#8a8f97;
+    --line:rgba(23,25,29,.12); --line-strong:rgba(23,25,29,.24);
+    --accent:#c0271f; --accent-ink:#8f1c16; --accent-soft:rgba(192,39,31,.09);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --col:820px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:#131518; --surface:#1b1e23; --surface-2:#20242a;
+      --ink:#ecebe6; --muted:#a3a8b1; --faint:#767c85;
+      --line:rgba(236,235,230,.14); --line-strong:rgba(236,235,230,.26);
+      --accent:#e0564b; --accent-ink:#f0a49d; --accent-soft:rgba(224,86,75,.14);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground:#f2f2ef; --surface:#ffffff; --surface-2:#faf9f7;
+    --ink:#17191d; --muted:#5b616a; --faint:#8a8f97;
+    --line:rgba(23,25,29,.12); --line-strong:rgba(23,25,29,.24);
+    --accent:#c0271f; --accent-ink:#8f1c16; --accent-soft:rgba(192,39,31,.09);
+  }
+  :root[data-theme="dark"] {
+    --ground:#131518; --surface:#1b1e23; --surface-2:#20242a;
+    --ink:#ecebe6; --muted:#a3a8b1; --faint:#767c85;
+    --line:rgba(236,235,230,.14); --line-strong:rgba(236,235,230,.26);
+    --accent:#e0564b; --accent-ink:#f0a49d; --accent-soft:rgba(224,86,75,.14);
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); line-height:1.6;
+    font-size:16px; letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page {
+    max-width:var(--col); margin:0 auto; padding:clamp(1.2rem,4vw,3rem);
+  }
+  .sheet {
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:6px; overflow:hidden;
+    box-shadow:0 1px 2px rgba(0,0,0,.04), 0 18px 50px rgba(0,0,0,.06);
+  }
+  .pad { padding:clamp(1.5rem,5vw,3.4rem); }
+
+  h1,h2,h3 { font-family:var(--serif); font-weight:600; line-height:1.15; text-wrap:balance; margin:0; }
+  p { margin:0; }
+  a { color:var(--accent-ink); text-underline-offset:2px; }
+  @media (prefers-color-scheme: dark){ a { color:var(--accent-ink); } }
+
+  .label {
+    font-family:var(--sans); text-transform:uppercase; letter-spacing:.16em;
+    font-size:.68rem; font-weight:700; color:var(--accent-ink);
+  }
+  .muted { color:var(--muted); }
+  .faint { color:var(--faint); }
+
+  /* ---- Draft banner (screen only) ---- */
+  .draft {
+    max-width:var(--col); margin:0 auto clamp(.6rem,2vw,1rem);
+    padding:.7rem 1rem; border:1px dashed var(--line-strong); border-radius:6px;
+    background:var(--accent-soft); color:var(--accent-ink);
+    font-size:.82rem; font-weight:600;
+  }
+
+  /* ---- Letterhead ---- */
+  .head { display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; flex-wrap:wrap; }
+  .studio { display:flex; align-items:center; gap:.85rem; }
+  .seal {
+    width:52px; height:52px; flex:none; border-radius:9px;
+    background:var(--accent); color:#fff;
+    display:grid; place-items:center;
+    font-family:var(--serif); font-size:1.5rem; font-weight:700;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);
+  }
+  .studio-name { font-family:var(--serif); font-size:1.15rem; font-weight:600; line-height:1.1; }
+  .studio-sub { font-size:.78rem; color:var(--muted); }
+  .doc-meta { text-align:right; font-size:.82rem; color:var(--muted); }
+  .doc-meta b { color:var(--ink); font-weight:600; }
+
+  .rule { height:2px; background:var(--accent); border:0; margin:1.6rem 0 0; width:64px; }
+  .hr { border:0; border-top:1px solid var(--line); margin:2.6rem 0; }
+
+  .title {
+    font-size:clamp(1.9rem,5vw,2.9rem); letter-spacing:-.01em; margin-top:1.4rem;
+  }
+  .title em { font-style:italic; color:var(--accent-ink); }
+  .prepared { margin-top:1rem; font-size:.95rem; color:var(--muted); }
+  .prepared b { color:var(--ink); font-weight:600; }
+
+  .lede { font-size:1.06rem; margin-top:1.4rem; max-width:62ch; }
+
+  /* ---- Section ---- */
+  section { margin-top:2.9rem; }
+  .sec-head { display:flex; align-items:baseline; gap:.9rem; margin-bottom:1.2rem; }
+  .sec-num {
+    font-family:var(--serif); font-size:1rem; color:var(--accent-ink); font-weight:700;
+    font-variant-numeric:tabular-nums;
+  }
+  .sec-title { font-size:1.32rem; }
+
+  /* ---- Scope groups ---- */
+  .scope { display:grid; gap:1.1rem; }
+  .scope-card {
+    border:1px solid var(--line); border-radius:6px; background:var(--surface-2);
+    padding:1.2rem 1.3rem;
+  }
+  .scope-card h3 { font-size:1.02rem; margin-bottom:.6rem; display:flex; align-items:center; gap:.6rem; }
+  .scope-card h3 .k { color:var(--accent-ink); font-family:var(--serif); font-size:1.1rem; }
+  ul.ticks { list-style:none; margin:0; padding:0; display:grid; gap:.45rem; }
+  ul.ticks li { position:relative; padding-left:1.5rem; font-size:.93rem; color:var(--ink); }
+  ul.ticks li::before {
+    content:""; position:absolute; left:0; top:.5em;
+    width:8px; height:8px; border-radius:2px; background:var(--accent);
+  }
+  ul.ticks li .m { color:var(--muted); }
+
+  /* ---- Investment table ---- */
+  .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; }
+  table { width:100%; border-collapse:collapse; font-size:.93rem; min-width:440px; }
+  th, td { text-align:left; padding:.85rem 1.1rem; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:.68rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); font-weight:700; background:var(--surface-2); }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td .item-desc { color:var(--muted); font-size:.83rem; margin-top:.15rem; }
+  tr.total td { border-bottom:0; border-top:2px solid var(--line-strong); font-weight:700; font-size:1rem; padding-top:1rem; }
+  tr.total .grand { font-family:var(--serif); font-size:1.5rem; color:var(--accent-ink); }
+  tbody tr:last-child td { border-bottom:0; }
+
+  /* ---- Highlight / callouts ---- */
+  .callout {
+    border:1px solid var(--line); border-left:3px solid var(--accent);
+    background:var(--surface-2); border-radius:6px; padding:1.2rem 1.4rem;
+    display:flex; gap:1.4rem; align-items:baseline; flex-wrap:wrap;
+  }
+  .price-big { font-family:var(--serif); font-size:2.2rem; font-weight:700; line-height:1; letter-spacing:-.01em; }
+  .price-big .cur { color:var(--accent-ink); font-size:1.2rem; vertical-align:.35em; margin-right:.1em; }
+  .price-cap { font-size:.8rem; color:var(--muted); margin-top:.35rem; }
+  .callout .split { flex:1; min-width:200px; }
+  .callout .split + .split { border-left:1px solid var(--line); padding-left:1.4rem; }
+
+  /* two-col grid */
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+  @media (max-width:620px){ .grid2 { grid-template-columns:1fr; } }
+  .mini {
+    border:1px solid var(--line); border-radius:6px; padding:1.1rem 1.2rem; background:var(--surface-2);
+  }
+  .mini .big { font-family:var(--serif); font-size:1.5rem; font-weight:700; }
+  .mini .cur { color:var(--accent-ink); font-size:.85rem; vertical-align:.35em; margin-right:.05em; }
+
+  /* ---- Timeline ---- */
+  .timeline { display:grid; gap:0; }
+  .phase { display:grid; grid-template-columns:auto 1fr auto; gap:1rem; align-items:baseline;
+           padding:.85rem 0; border-bottom:1px solid var(--line); }
+  .phase:last-child { border-bottom:0; }
+  .phase .ph-n { font-family:var(--serif); color:var(--accent-ink); font-weight:700; font-variant-numeric:tabular-nums; }
+  .phase .ph-t b { font-weight:600; }
+  .phase .ph-t p { font-size:.85rem; color:var(--muted); }
+  .phase .ph-w { font-size:.82rem; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums; }
+
+  /* ---- Terms list ---- */
+  ol.terms { margin:0; padding-left:1.2rem; display:grid; gap:.55rem; font-size:.93rem; }
+  ol.terms li { padding-left:.3rem; }
+  ol.terms b { font-weight:600; }
+
+  .assump { display:grid; gap:.5rem; font-size:.9rem; color:var(--muted); }
+  .assump li { list-style:none; padding-left:1.3rem; position:relative; }
+  .assump li::before { content:"—"; position:absolute; left:0; color:var(--faint); }
+
+  /* ---- Sign-off ---- */
+  .sign { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:1.4rem; }
+  @media (max-width:620px){ .sign { grid-template-columns:1fr; } }
+  .sign-line { margin-top:2.4rem; border-top:1px solid var(--line-strong); padding-top:.5rem; font-size:.82rem; color:var(--muted); }
+
+  footer.foot { margin-top:2.4rem; padding-top:1.4rem; border-top:1px solid var(--line);
+                display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+                font-size:.8rem; color:var(--faint); }
+
+  @media print {
+    body { background:#fff; }
+    .draft, .no-print { display:none !important; }
+    .sheet { box-shadow:none; border:0; border-radius:0; }
+    .page { padding:0; }
+    a { color:var(--ink); text-decoration:none; }
+  }
+</style>
+
+<p class="draft no-print">Draft — replace the <b>[bracketed]</b> fields (your name, business, contact, banking) before sending. Delete this note; it won't appear when printed to PDF.</p>
+
+<div class="page">
+  <div class="sheet">
+    <div class="pad">
+
+      <!-- ============ LETTERHEAD ============ -->
+      <div class="head">
+        <div class="studio">
+          <div class="seal" aria-hidden="true">押</div>
+          <div>
+            <div class="studio-name">[Your Name / Studio]</div>
+            <div class="studio-sub">Web Design &amp; Development · Toronto, ON</div>
+          </div>
+        </div>
+        <div class="doc-meta">
+          <div>Proposal <b>#2026-014</b></div>
+          <div>Date: <b>July 10, 2026</b></div>
+          <div>Valid until: <b>August 9, 2026</b></div>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <h1 class="title">Website Design, Registration &amp; <em>Online Payments</em></h1>
+      <p class="prepared">Prepared for <b>MMS Shotokan Karate</b> — Oshawa, Ontario &nbsp;·&nbsp; Attn: <b>[Dojo Owner / Sensei]</b></p>
+
+      <p class="lede">
+        A custom, mobile-friendly website for the dojo that does more than look good: prospective students can
+        <b>register online</b>, families can <b>pay the registration fee and monthly membership securely</b>, and
+        every enquiry lands straight in your inbox — so you spend less time on admin and more on the mat.
+      </p>
+
+      <!-- ============ 01 OVERVIEW / GOALS ============ -->
+      <section>
+        <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">What this project delivers</h2></div>
+        <div class="grid2">
+          <div class="mini"><div class="label">Goal</div><p style="margin-top:.4rem">Turn website visitors into registered, paying students without manual paperwork.</p></div>
+          <div class="mini"><div class="label">For</div><p style="margin-top:.4rem">Parents and adults in Oshawa/Durham searching for traditional Shotokan karate.</p></div>
+          <div class="mini"><div class="label">Approach</div><p style="margin-top:.4rem">A bespoke “Sumi-e Dojo” design — clean, disciplined, and unmistakably a karate dojo.</p></div>
+          <div class="mini"><div class="label">Result</div><p style="margin-top:.4rem">Registrations by email + automated Stripe payments, running on your own hosting.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ 02 SCOPE ============ -->
+      <section>
+        <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Scope &amp; deliverables</h2></div>
+        <div class="scope">
+
+          <div class="scope-card">
+            <h3><span class="k">体</span> Custom website &amp; design</h3>
+            <ul class="ticks">
+              <li>Bespoke visual identity &amp; responsive layout (looks great on phones, tablets, desktop)</li>
+              <li>Five pages: <span class="m">Home, Contact, Pricing, plus payment success &amp; cancel pages</span></li>
+              <li>Full content sections: schedule, location, curriculum, values, “who can join”</li>
+              <li>Smooth animations, accessibility-minded markup, fast loading</li>
+            </ul>
+          </div>
+
+          <div class="scope-card">
+            <h3><span class="k">連</span> Online registration &amp; contact</h3>
+            <ul class="ticks">
+              <li>Registration form &amp; contact form that email submissions to your Gmail</li>
+              <li>Spam protection built in <span class="m">(honeypot + trusted form service)</span></li>
+              <li>No monthly software fee — uses a free, reliable form service</li>
+            </ul>
+          </div>
+
+          <div class="scope-card">
+            <h3><span class="k">円</span> Secure online payments (Stripe)</h3>
+            <ul class="ticks">
+              <li>One-time <b>registration fee</b> + recurring <b>monthly membership</b></li>
+              <li>Secure Stripe Checkout — cards, Apple&nbsp;Pay &amp; Google&nbsp;Pay</li>
+              <li>Automatic email notification to the dojo on every payment</li>
+              <li>Members can cancel/manage their own membership (Stripe portal)</li>
+              <li>You keep 100% minus Stripe’s standard fee; card data never touches your site</li>
+            </ul>
+          </div>
+
+          <div class="scope-card">
+            <h3><span class="k">立</span> Launch &amp; handover</h3>
+            <ul class="ticks">
+              <li>Deployment to your <b>Hostinger</b> hosting with HTTPS</li>
+              <li>Written setup guide for keys, pricing &amp; future edits</li>
+              <li>End-to-end testing of forms &amp; payments before go-live</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ 03 INVESTMENT ============ -->
+      <section>
+        <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Investment</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Work</th>
+                <th class="num">Est. effort</th>
+                <th class="num">Amount (CAD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Discovery &amp; custom design<div class="item-desc">Visual direction, layout, responsive design</div></td>
+                <td class="num">~14 hrs</td>
+                <td class="num">$1,400</td>
+              </tr>
+              <tr>
+                <td>Website build<div class="item-desc">Five pages, content, animations, mobile</div></td>
+                <td class="num">~18 hrs</td>
+                <td class="num">$1,800</td>
+              </tr>
+              <tr>
+                <td>Registration &amp; contact email<div class="item-desc">Forms, delivery, spam protection</div></td>
+                <td class="num">~4 hrs</td>
+                <td class="num">$400</td>
+              </tr>
+              <tr>
+                <td>Stripe payment platform<div class="item-desc">One-time + subscription, checkout, notifications, member portal</div></td>
+                <td class="num">~14 hrs</td>
+                <td class="num">$1,700</td>
+              </tr>
+              <tr>
+                <td>Deployment, testing &amp; QA<div class="item-desc">Hostinger, HTTPS, end-to-end checks</div></td>
+                <td class="num">~6 hrs</td>
+                <td class="num">$600</td>
+              </tr>
+              <tr>
+                <td>Project management &amp; revisions<div class="item-desc">Up to two rounds of revisions, handover</div></td>
+                <td class="num">~8 hrs</td>
+                <td class="num">$600</td>
+              </tr>
+              <tr class="total">
+                <td>Fixed project total</td>
+                <td class="num muted">~64 hrs</td>
+                <td class="num grand">$6,500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="faint" style="font-size:.8rem;margin-top:.7rem">
+          Quoted as a <b>fixed price</b>, not hourly — the hours shown are for transparency. Stripe’s processing
+          fee (approx. 2.9% + 30¢ per transaction) is charged by Stripe to the dojo and is not part of this quote.
+        </p>
+      </section>
+
+      <!-- ============ 04 CARE PLAN + ADDONS ============ -->
+      <section>
+        <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Ongoing care &amp; optional add-ons</h2></div>
+
+        <div class="callout">
+          <div class="split">
+            <div class="label">Recommended · Care plan</div>
+            <div class="price-big" style="margin-top:.5rem"><span class="cur">$</span>85<span style="font-family:var(--sans);font-size:.9rem;font-weight:400;color:var(--muted)"> / month</span></div>
+            <p class="price-cap">Hosting checks, updates, security, Stripe/plugin maintenance, and small content edits (up to 1 hr/mo). Cancel anytime.</p>
+          </div>
+          <div class="split">
+            <div class="label">Why it matters</div>
+            <p class="muted" style="margin-top:.5rem;font-size:.9rem">A site that takes payments needs upkeep. The care plan keeps it secure and current, and gives the dojo a single point of contact when something needs changing.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:1.1rem">
+          <div class="mini"><div class="label">Add-on</div><div class="big" style="margin-top:.35rem"><span class="cur">+$</span>450</div><p class="price-cap">Family / multi-student pricing tier</p></div>
+          <div class="mini"><div class="label">Add-on</div><div class="big" style="margin-top:.35rem"><span class="cur">+$</span>600</div><p class="price-cap">Logo &amp; brand mark design</p></div>
+          <div class="mini"><div class="label">Add-on</div><div class="big" style="margin-top:.35rem"><span class="cur">+$</span>400</div><p class="price-cap">Professional copywriting for all pages</p></div>
+          <div class="mini"><div class="label">Add-on</div><div class="big" style="margin-top:.35rem">Referral</div><p class="price-cap">Photography of classes &amp; dojo (local partner)</p></div>
+        </div>
+      </section>
+
+      <hr class="hr" />
+
+      <!-- ============ 05 TIMELINE ============ -->
+      <section style="margin-top:0">
+        <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Timeline</h2></div>
+        <div class="timeline">
+          <div class="phase"><span class="ph-n">1</span><span class="ph-t"><b>Kickoff &amp; content</b><p>Gather logo, photos, exact fees, Stripe/Hostinger access</p></span><span class="ph-w">Week 1</span></div>
+          <div class="phase"><span class="ph-n">2</span><span class="ph-t"><b>Design &amp; build</b><p>Pages built, first preview link for feedback</p></span><span class="ph-w">Weeks 1–2</span></div>
+          <div class="phase"><span class="ph-n">3</span><span class="ph-t"><b>Payments &amp; forms</b><p>Stripe + email wired and tested in test mode</p></span><span class="ph-w">Week 3</span></div>
+          <div class="phase"><span class="ph-n">4</span><span class="ph-t"><b>Revisions &amp; launch</b><p>Final edits, go-live on Hostinger, handover</p></span><span class="ph-w">Week 4</span></div>
+        </div>
+        <p class="faint" style="font-size:.8rem;margin-top:.8rem">Typical delivery: <b>3–4 weeks</b> from kickoff, assuming content and account access are provided promptly.</p>
+      </section>
+
+      <!-- ============ 06 TERMS ============ -->
+      <section>
+        <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Payment terms &amp; assumptions</h2></div>
+        <ol class="terms">
+          <li><b>50% deposit</b> ($3,250) to begin; <b>50% balance</b> ($3,250) due on launch.</li>
+          <li>Care plan billed monthly, starting the month after launch. Cancel with 30 days’ notice.</li>
+          <li>Includes <b>two rounds of revisions</b>; further changes billed at <b>[$90]/hr</b> or added to the care plan.</li>
+          <li>Payment by e-transfer to <b>[email]</b> or invoice via <b>[Stripe/PayPal]</b>.</li>
+        </ol>
+        <ul class="assump" style="margin-top:1.1rem;padding:0">
+          <li>Dojo provides content (text, logo, photos), plus Stripe and Hostinger account access.</li>
+          <li>Stripe and Hostinger accounts are owned by the dojo; ownership of the site transfers on final payment.</li>
+          <li>Third-party fees (hosting renewal, domain, Stripe processing) are the dojo’s responsibility.</li>
+        </ul>
+      </section>
+
+      <!-- ============ ACCEPTANCE ============ -->
+      <section>
+        <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Acceptance</h2></div>
+        <p class="muted" style="font-size:.92rem">To proceed, sign below and return with the 50% deposit. We’ll schedule kickoff within a few days.</p>
+        <div class="sign">
+          <div>
+            <div class="sign-line">Signature — MMS Shotokan Karate</div>
+            <div class="sign-line" style="margin-top:1.8rem">Name &amp; date</div>
+          </div>
+          <div>
+            <div class="sign-line">Signature — [Your Name / Studio]</div>
+            <div class="sign-line" style="margin-top:1.8rem">Name &amp; date</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <span>[Your Name / Studio] · [email] · [phone]</span>
+        <span>押忍 — thank you for the opportunity</span>
+      </footer>
+
+    </div>
+  </div>
+</div>
