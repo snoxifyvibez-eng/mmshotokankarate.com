@@ -1,4 +1,4 @@
-# Shotokan Karate Oshawa Website
+# Shotokan Karate Website
 
 This is a simple one-page static website.
 
