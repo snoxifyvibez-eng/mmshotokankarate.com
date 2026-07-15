@@ -11,7 +11,7 @@
   "use strict";
 
   // TODO: paste your Web3Forms access key here (see SETUP.md).
-  var WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+  var WEB3FORMS_ACCESS_KEY = "f8a5d476-0dbc-483a-8f96-527ca024aff7";
 
   var ENDPOINT = "https://api.web3forms.com/submit";
 
